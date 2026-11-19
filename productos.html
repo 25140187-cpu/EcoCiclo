@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoCiclo - Productos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <div class="logo-contenedor">
+        <img src="logo.jpg" alt="Logo EcoCiclo">
+    </div>
+    <div class="titulo-header">
+        <h1>Nuestros Productos</h1>
+        <p>Artículos elaborados con materiales reciclados y reutilizados</p>
+    </div>
+</header>
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="empresa.html">Nuestra empresa</a>
+    <a href="ods12.html">ODS 12</a>
+    <a href="acciones.html">¿Qué hacemos?</a>
+    <a href="productos.html" class="activo">Productos</a>
+    <a href="contacto.html">Contacto</a>
+</nav>
+<main>
+    <h2>Catálogo EcoCiclo</h2>
+    <p>Selecciona los productos que deseas adquirir para apoyar nuestro proyecto sustentable:</p>
+
+   <div class="grid-tarjetas">
+        
+        <div class="tarjeta-producto">
+            <img src="termo.jpg" alt="Ecotermo" class="foto-producto">
+            <h3>Termo Ecologico</h3>
+            <p>Termos duraderos y ecológicos hechos de acero inoxidable, bambú y bioplásticos . Cada termo varia del material, dependiendo puedes escoger el de tu agrado.</p>
+            <div class="precio">$40 MXN</div>
+            <button class="boton" onclick="agregarAlCarrito('Nombre de tu Producto 1', 40)">Agregar al carrito</button>
+        </div>
+
+        <div class="tarjeta-producto">
+            <img src="papel.jpg" alt="Ecopapel" class="foto-producto">
+            <h3>Papel Ecologico</h3>
+            <p>Hecho de fibras de papel reciclado y residuos agrícolas</p>
+            <div class="precio">$55 MXN</div>
+            <button class="boton" onclick="agregarAlCarrito('Nombre de tu Producto 2', 55)">Agregar al carrito</button>
+        </div>
+       
+        <div class="tarjeta-producto">
+            <img src="peine.jpg" alt="Ecopeine" class="foto-producto">
+            <h3>Peine ecologico</h3>
+            <p>Hechos de bambú</p>
+            <div class="precio">$30 MXN</div>
+            <button class="boton" onclick="agregarAlCarrito('Nombre de tu Producto 3', 30)">Agregar al carrito</button>
+        </div>
+       
+        <div class="tarjeta-producto">
+            <img src="toallas.jpg" alt="Ecocitoallas" class="foto-producto">
+            <h3>Toallas femeninas ecologicas</h3>
+            <p>Hechas con fibras biodegradables de origen vegetal</p>
+            <div class="precio">$70 MXN</div>
+            <button class="boton" onclick="agregarAlCarrito('Nombre de tu Producto 4', 70)">Agregar al carrito</button>
+        </div>
+    </div>
+
+   
+    <section class="caja">
+        <h3>🛒 Tu Carrito de Compras</h3>
+        <ul id="lista-carrito">
+            <li>Aún no has agregado productos.</li>
+        </ul>
+        <p><strong>Total a pagar: $<span id="total-carrito">0</span> MXN</strong></p>
+        
+        <button class="boton" onclick="finalizarCompra()">Finalizar compra</button>
+        <button class="boton boton-secundario" onclick="vaciarCarrito()">Vaciar carrito</button>
+
+        <div id="mensaje-compra" class="mensaje-exito"></div>
+    </section>
+</main>
+<footer>
+    EcoCiclo | Proyecto Agenda 2030 | Grupo 3105
+</footer>
+
+<!-- JAVASCRIPT SENCILLO PARA LA TIENDA -->
+<script>
+    let carrito = [];
+    let total = 0;
+
+    function agregarAlCarrito(nombre, precio) {
+        carrito.push({ nombre: nombre, precio: precio });
+        total += precio;
+        actualizarVista();
+        document.getElementById("mensaje-compra").style.display = "none";
+    }
+
+    function actualizarVista() {
+        const lista = document.getElementById("lista-carrito");
+        lista.innerHTML = "";
+
+        if (carrito.length === 0) {
+            lista.innerHTML = "<li>Aún no has agregado productos.</li>";
+        } else {
+            carrito.forEach(function(item) {
+                const li = document.createElement("li");
+                li.textContent = item.nombre + " - $" + item.precio + " MXN";
+                lista.appendChild(li);
+            });
+        }
+        document.getElementById("total-carrito").textContent = total;
+    }
+
+    function vaciarCarrito() {
+        carrito = [];
+        total = 0;
+        actualizarVista();
+        document.getElementById("mensaje-compra").style.display = "none";
+    }
+
+    function finalizarCompra() {
+        const mensaje = document.getElementById("mensaje-compra");
+        if (carrito.length === 0) {
+            alert("Tu carrito está vacío. Agrega al menos un producto.");
+            return;
+        }
+        mensaje.style.display = "block";
+        mensaje.textContent = "¡Gracias por tu compra responsable de $" + total + " MXN! Tu pedido de EcoCiclo ha sido registrado.";
+        carrito = [];
+        total = 0;
+        actualizarVista();
+    }
+</script>
+</body>
+</html>

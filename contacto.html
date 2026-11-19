@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoCiclo - Contacto</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <div class="logo-contenedor">
+        <img src="logo.jpg" alt="Logo EcoCiclo">
+    </div>
+    <div class="titulo-header">
+        <h1>Contacto</h1>
+        <p>Conoce y comparte nuestra propuesta</p>
+    </div>
+</header>
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="empresa.html">Nuestra empresa</a>
+    <a href="ods12.html">ODS 12</a>
+    <a href="acciones.html">¿Qué hacemos?</a>
+    <a href="productos.html">Productos</a>
+    <a href="contacto.html" class="activo">Contacto</a>
+</nav>
+<main>
+    <h2>¿Quieres saber más o enviarnos un mensaje?</h2>
+    <p>
+        Este sitio forma parte de un proyecto escolar sobre
+        La Agenda 2030 y el ODS 12. Escríbenos tus dudas, sugerencias o pedidos especiales.
+    </p>
+
+    
+    <section class="caja">
+        <h3>Envíanos un mensaje</h3>
+        <form id="form-contacto" onsubmit="enviarFormulario(event)">
+            <div class="formulario-grupo">
+                <label for="nombre">Tu nombre:</label>
+                <input type="text" id="nombre" placeholder="Ej. Ana López" required>
+            </div>
+
+            <div class="formulario-grupo">
+                <label for="correo">Correo electrónico:</label>
+                <input type="email" id="correo" placeholder="Ej. ana@correo.com" required>
+            </div>
+
+            <div class="formulario-grupo">
+                <label for="motivo">Motivo de contacto:</label>
+                <select id="motivo">
+                    <option value="Información sobre el proyecto">Información sobre el proyecto</option>
+                    <option value="Pedido de productos">Pedido de productos</option>
+                    <option value="Donación de materiales reciclables">Donación de materiales reciclables</option>
+                    <option value="Sugerencia">Sugerencia</option>
+                </select>
+            </div>
+
+            <div class="formulario-grupo">
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" rows="4" placeholder="Escribe aquí tu mensaje..." required></textarea>
+            </div>
+
+            <button type="submit" class="boton">Enviar mensaje</button>
+        </form>
+
+        <div id="respuesta-contacto" class="mensaje-exito"></div>
+    </section>
+
+    <section class="caja">
+        <h3>Equipo</h3>
+        <ul>
+            <li>Blanco Vázquez Areli</li>
+            <li>Cordero Cruz Cristian Dessyre</li>
+            <li>Sanchez Carillo Joseph Estefania</li>
+            <li>Fernanda Sanchez Fuentes</li>
+            <li>Camila Jacqueline Tzeel Vicente</li>
+        </ul>
+    </section>
+
+    <section class="caja">
+        <h3>Fuente principal</h3>
+        <p>Naciones Unidas - Objetivo de Desarrollo Sostenible 12.</p>
+        <a class="boton" href="https://sdgs.un.org/goals/goal12" target="_blank">
+           Consultar fuente
+        </a>
+    </section>
+</main>
+<footer>
+    EcoCiclo | Proyecto Agenda 2030 | Grupo 3105
+</footer>
+
+
+<script>
+    function enviarFormulario(event) {
+        event.preventDefault(); // Evita que la página se recargue
+        
+        const nombre = document.getElementById("nombre").value;
+        const motivo = document.getElementById("motivo").value;
+        const cajaRespuesta = document.getElementById("respuesta-contacto");
+
+        cajaRespuesta.style.display = "block";
+        cajaRespuesta.textContent = "¡Gracias, " + nombre + "! Hemos recibido tu mensaje sobre '" + motivo + "'. El equipo de EcoCiclo te responderá pronto.";
+
+        document.getElementById("form-contacto").reset();
+    }
+</script>
+</body>
+</html>
